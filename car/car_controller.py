@@ -1,7 +1,12 @@
 from fastapi import APIRouter, HTTPException
-from .car_model import Car
+from .car_model import Car, CarBase
 
 router = APIRouter(prefix="/car", tags=["car"])
+
+@router.get("/", response_model=[Car])
+async def get_car():
+    # For demonstration, we will return a dummy car. In a real application, you would fetch this from a database.
+    return [Car(id=1, make="Toyota", model="Corolla", year=2020, color="Blue")]
 
 @router.get("/{car_id}", response_model=Car)
 async def get_car(car_id: int):
@@ -12,6 +17,6 @@ async def get_car(car_id: int):
         raise HTTPException(status_code=404, detail="Car not found")
     
 @router.post("/", response_model=Car)
-async def create_car(car: Car):
+async def create_car(car: CarBase):
     # In a real application, you would save the car to a database and return the saved object.
     return car

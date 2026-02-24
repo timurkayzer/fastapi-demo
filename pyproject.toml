@@ -1,0 +1,3 @@
+[tool.poetry.scripts]
+start = "uvicorn myapp.main:main"
+dev = "uvicorn myapp.main:main --reload"
