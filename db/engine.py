@@ -11,7 +11,7 @@ database = getenv("DB_NAME")
 if not all([host, port, user, password, database]):
     raise ValueError("Database connection parameters are not fully set in environment variables.")
 
-connection_string = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}"
+connection_string = f"postgresql+psycopg://{user}:{password}@{host}:{port}/{database}"
 
 engine = create_engine(connection_string)
 Base = declarative_base()

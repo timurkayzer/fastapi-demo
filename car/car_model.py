@@ -4,7 +4,7 @@ from .car_interfaces import CarBase
 class Base (DeclarativeBase):
     pass
 
-class CarModel(Base, CarBase):
+class CarModel(Base):
     __tablename__ = "cars"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
