@@ -1,4 +1,9 @@
 [tool.poetry.scripts]
-start = "uvicorn myapp.main:main"
-dev = "uvicorn myapp.main:main --reload"
+start = "uvicorn main:app"
+dev = "uvicorn main:app --reload"
 test = "pytest tests/"
+migrate-up = "alembic upgrade head"
+migrate-down = "alembic downgrade -1"
+migrate-generate = "alembic revision --autogenerate -m"
+migrate-status = "alembic current"
+migrate-history = "alembic history --oneline"
