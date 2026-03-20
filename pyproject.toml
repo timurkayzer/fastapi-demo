@@ -1,4 +1,30 @@
+[tool.poetry]
+name = "fastapi-demo"
+version = "0.1.0"
+description = "FastAPI showcase project with SQLAlchemy and Alembic migrations"
+authors = ["Timur Kayzer <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.129.0"
+uvicorn = "^0.40.0"
+sqlalchemy = "^2.0.46"
+alembic = "^1.18.4"
+psycopg = "^3.3.3"
+pydantic = "^2.12.5"
+pydantic-settings = "^2.13.1"
+python-dotenv = "^1.2.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.0.2"
+pytest-asyncio = "^1.3.0"
+
 [tool.poetry.scripts]
-start = "uvicorn myapp.main:main"
-dev = "uvicorn myapp.main:main --reload"
+start = "uvicorn main:app"
+dev = "uvicorn main:app --reload"
 test = "pytest tests/"
+migrate-up = "alembic upgrade head"
+migrate-down = "alembic downgrade -1"
+migrate-status = "alembic current"
+migrate-history = "alembic history --oneline"
